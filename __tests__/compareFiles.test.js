@@ -18,3 +18,12 @@ test('Compare two flat jsons', () =>{
     
     expect(actualResult).toMatch(expectedResult);
 })
+
+test('Compare two flat yaml', () =>{
+    const firstJson = join(fixturesPath, 'fileOne.yaml');
+    const secondJson = join(fixturesPath, 'fileTwo.yml');
+    const expectedResult = readFileSync(join(fixturesPath, 'result.txt'), 'utf-8');
+    const actualResult = genDiff(parseFile(firstJson), parseFile(secondJson));
+    
+    expect(actualResult).toMatch(expectedResult);
+})
